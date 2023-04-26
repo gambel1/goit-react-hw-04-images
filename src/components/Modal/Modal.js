@@ -7,16 +7,19 @@ const modalRoot = document.querySelector('#modal-root');
 
 export default function Modal({ closeModal, largeModalImageURL, tags }) {
   useEffect(() => {
-    window.addEventListener('keydown', closeOnEsc);
-    window.removeEventListener('keydown', closeOnEsc);
-  });
+    const closeOnEsc = e => {
+      if (e.code !== 'Escape') {
+        return;
+      }
+      closeModal();
+    };
 
-  const closeOnEsc = e => {
-    if (e.code !== 'Escape') {
-      return;
-    }
-    closeModal();
-  };
+    window.addEventListener('keydown', closeOnEsc);
+
+    return () => {
+      window.removeEventListener('keydown', closeOnEsc);
+    };
+  }, [closeModal]);
 
   return createPortal(
     <ModalOverlayBoxDiv onClick={closeModal}>
