@@ -5,7 +5,6 @@ import Button from '../Button/Button';
 import ApiFetchGallery from '../../api/ApiFetchGallery';
 import { useState, useEffect } from 'react';
 import Loader from '../Loader/Loader';
-import React from 'react';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 export default function App() {
